@@ -1,5 +1,5 @@
 from django.urls import path
-from .models import Food
+from .models import Highscores
 
 from . import views
 

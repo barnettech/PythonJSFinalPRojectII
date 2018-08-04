@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import Food, Order, Order_Number
+from .models import Highscores
 from django.db import models
 from django.contrib.auth.models import User
 from django import forms
