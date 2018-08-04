@@ -1,7 +1,7 @@
 from django.db import models
 
 # Model to hold all the food items for the menu.
-class Highscores(models.Model):
+class Highscore(models.Model):
     """
     Model representing a food on the menu (but not a specific copy of a food).
     """
@@ -12,4 +12,4 @@ class Highscores(models.Model):
         """
         String for representing the Model object.
         """
-        return self.besttime
+        return self.username

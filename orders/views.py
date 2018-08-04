@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import Highscores
+from .models import Highscore
 from django.db import models
 from django.contrib.auth.models import User
 from django import forms
@@ -37,5 +37,14 @@ def signup(request):
 
 # view existing orders at this route.
 def play_game(request):
-   return render(request, 'JSgame.html')
-   #return render(request, 'JSgame.html', {'orders':orders})
+  return render(request, 'JSgame.html')
+
+# after game ends post highscore to the model Highscore
+def post_highscore(request):
+   print('posting the highscore')
+   score = request.POST.get('score', 0)
+   print(f"score is {score}")
+   H = Highscore(besttime=score, username=request.user.username)
+   H.save()
+   return HttpResponse("Success!") # Sending an success response
+

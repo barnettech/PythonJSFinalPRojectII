@@ -4,6 +4,7 @@ var foo = Math.random().toString(36).substring(2, 15) + Math.random().toString(3
 var pressed = 0;
 var secondsPassed = 0;
 var collisionOccured = false;
+var saved_high_score = false;
 
 console.log('foo is ' + foo);
 player[foo] = new Player(10, 10, 10);
@@ -15,6 +16,35 @@ var keyA = false;
 var keyS = false;
 var keyD = false;
 var spacebar = false;
+
+// This snippet is provided in Django official documentation
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
 
 
 window.onload = function(){
@@ -46,7 +76,9 @@ document.addEventListener('keydown', (event) => {
     if(collisionOccured == false) {
       secondsPassed = secondsPassed + 1;
     }
-    document.querySelector("#game-clock").textContent = secondsPassed;
+    if(collisionOccured == false) {
+      document.querySelector("#game-clock").textContent = secondsPassed;
+    }
   }, 1000);
 
 
@@ -55,15 +87,29 @@ var animate = function () {
     player[foo].updatePlayer();
     alien[foo].updateAlien();
   }
-  if(player[foo].collision(alien[foo])) {
+  if(player[foo].collision(alien[foo]) && saved_high_score == false) {
     var audio = new Audio('static/audio/pickup.wav');
     audio.play();
+    console.log('collision');
     if(secondsPassed > 2) {
       collisionOccured = true;
       document.querySelector("#score-text").textContent
       = 'Game over, your final score:  ' + secondsPassed + ' (refresh the web page to restart)';
+      if(saved_high_score == false) {
+         $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/post_highscore",
+            data: {
+              "score": secondsPassed
+            },
+            success: function(data) {
+                console.log(data);
+            },
+        });
+        saved_high_score = true;
+      }
     }
-    console.log('collision');
   }
   requestAnimationFrame( animate );
 

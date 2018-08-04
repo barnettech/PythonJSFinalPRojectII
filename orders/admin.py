@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Highscores
+from .models import Highscore
 
 # Register your models here.
-admin.site.register(Highscores)
+admin.site.register(Highscore)

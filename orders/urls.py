@@ -1,5 +1,5 @@
 from django.urls import path
-from .models import Highscores
+from .models import Highscore
 
 from . import views
 
@@ -8,4 +8,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("signup", views.signup, name="signup"),
     path("play_game", views.play_game, name="play_game"),
+    path("post_highscore", views.post_highscore, name="post_highscore"),
 ]
