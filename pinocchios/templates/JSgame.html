@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+        {% if user.is_authenticated %}
+        <div id='authenticated'>yes</div>
         <div class="container">
           <row>
               <!-- area to fly the 1979 asteroid classic ship -->
@@ -10,5 +12,6 @@
               <h2>Seconds in the ring:  <div id="score-text">Your Score:  <span id='game-clock'></span></div></h2>
           </row>
         </div> <!-- closes the container div -->
+        {% endif %}
 
 {% endblock %}
