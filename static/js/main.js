@@ -33,10 +33,10 @@ camera.position.z = 5;
 
 document.addEventListener('keydown', (event) => {
   const keyCode = event.keyCode;
-  if(pressed == 0) {
+  //if(pressed == 0) {
     document.onkeyup = player[foo].movePlayer1(keyCode, pressed);
     pressed = 1;
-  }
+  //}
 });
 
 var animate = function () {

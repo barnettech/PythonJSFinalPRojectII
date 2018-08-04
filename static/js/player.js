@@ -16,19 +16,11 @@ class Player {
     //this.cube.position.set(10, 10, 10);
   }
   movePlayer1(keyCode, pressed) {
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-
     // code to broadcast flying data
-    /*socket.on('on flyleftship', data => {
-        let keyD = data.keyD;
-        let keyS = data.keyS;
-        let keyA = data.keyA;
-        let keyW = data.keyW;
-        console.log('flying the ship')
-        pressed = 1;
-        this.flyLeftShip(keyD, keyS, keyA, keyW);
-    });*/
-
+    keyD = false;
+    keyS = false;
+    keyA = false;
+    keyW = false;
     switch (keyCode) {
       case 68: //d
         keyD = true;
@@ -48,41 +40,8 @@ class Player {
         break;
     }
 
-    if(pressed == 0) {
-    if (keyD) {
-        // up
-        //socket.emit('on flyleftship', {'keyD': true, 'keyS': false, 'keyA': false, 'keyW': false});
-        keyD = false;
-        //this.cube.position.y = this.cube.position.y + .4;
-    }
-    else if (keyS) {
-        // down arrow
-        //socket.emit('on flyleftship', {'keyD': false, 'keyS': true, 'keyA': false, 'keyW': false});
-        keyS = false;
+    this.flyLeftShip(keyD, keyS, keyA, keyW);
 
-    }
-    else if (keyA) {
-       // left arrow
-       //socket.emit('on flyleftship', {'keyD': false, 'keyS': false, 'keyA': true, 'keyW': false});
-       keyA = false;
-       //this.cube.position.x = this.cube.position.x - .4;
-
-    }
-    else if (keyW) {
-       // right arrow
-       //socket.emit('on flyleftship', {'keyD': false, 'keyS': false, 'keyA': false, 'keyW': true});
-       // this.cube.position.x = this.cube.position.x + .4;
-       keyW = false;
-    }
-    else if (spacebar == true) {
-       // space bar
-       //socket.emit('on flyleftship', {'keyD': false, 'keyS': false, 'keyA': false, 'keyW': true});
-       keyW = false;
-       spacebar = false;
-       console.log('spacebar');
-       //this.cube.position.y = this.cube.position.y + .4;
-    }
-  }
   }
 
   updatePlayer(keyCode, pressed) {
@@ -91,7 +50,6 @@ class Player {
     if(this.cube.position.y > -3) {
       this.cube.position.y = this.cube.position.y - .01;
     }
-    //console.log(this.cube.position.x + ', ' + this.cube.position.y);
 
   }
   collision(target) {
@@ -114,17 +72,16 @@ class Player {
 
   flyLeftShip(keyD, keyS, keyA, keyW) {
   if (keyD == true && this.cube.position.x < 8.5) {
-    this.cube.position.x = this.cube.position.x + .010;
+    this.cube.position.x = this.cube.position.x + .15;
   }
   if (keyS == true && this.cube.position.y > -3) {
-    this.cube.position.y = this.cube.position.y - .010;
+    this.cube.position.y = this.cube.position.y - .15;
   }
   if (keyA == true && this.cube.position.x > -8.5) {
-    this.cube.position.x = this.cube.position.x - .010;
+    this.cube.position.x = this.cube.position.x - .15;
   }
   if (keyW == true && this.cube.position.y < 3.5) {
-    console.log('spacebar :119');
-    this.cube.position.y = this.cube.position.y + .010;
+    this.cube.position.y = this.cube.position.y + .15;
   }
   pressed = 0;
 
