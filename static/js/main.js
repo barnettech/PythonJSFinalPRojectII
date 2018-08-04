@@ -36,7 +36,9 @@ camera.position.z = 5;
 
 document.addEventListener('keydown', (event) => {
   const keyCode = event.keyCode;
-  document.onkeyup = player[foo].movePlayer1(keyCode, pressed);
+  if(collisionOccured == false) {
+    document.onkeyup = player[foo].movePlayer1(keyCode, pressed);
+  }
   pressed = 1;
 });
 
@@ -49,14 +51,17 @@ document.addEventListener('keydown', (event) => {
 
 
 var animate = function () {
-  player[foo].updatePlayer();
-  alien[foo].updateAlien();
+  if(collisionOccured == false) {
+    player[foo].updatePlayer();
+    alien[foo].updateAlien();
+  }
   if(player[foo].collision(alien[foo])) {
     var audio = new Audio('static/audio/pickup.wav');
     audio.play();
     if(secondsPassed > 2) {
       collisionOccured = true;
-      document.querySelector("#score-text").textContent = 'Game over, your final score:  ' + secondsPassed;
+      document.querySelector("#score-text").textContent
+      = 'Game over, your final score:  ' + secondsPassed + ' (refresh the web page to restart)';
     }
     console.log('collision');
   }
