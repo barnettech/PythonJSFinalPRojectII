@@ -2,6 +2,8 @@ var player = {};
 var alien = {};
 var foo = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 var pressed = 0;
+var secondsPassed = 0;
+var collisionOccured = false;
 
 console.log('foo is ' + foo);
 player[foo] = new Player(10, 10, 10);
@@ -33,18 +35,28 @@ camera.position.z = 5;
 
 document.addEventListener('keydown', (event) => {
   const keyCode = event.keyCode;
-  //if(pressed == 0) {
-    document.onkeyup = player[foo].movePlayer1(keyCode, pressed);
-    pressed = 1;
-  //}
+  document.onkeyup = player[foo].movePlayer1(keyCode, pressed);
+  pressed = 1;
 });
+
+  setInterval(function(){
+    if(collisionOccured == false) {
+      secondsPassed = secondsPassed + 1;
+    }
+    document.querySelector("#game-clock").textContent = secondsPassed;
+  }, 1000);
+
 
 var animate = function () {
   player[foo].updatePlayer();
   alien[foo].updateAlien();
   if(player[foo].collision(alien[foo])) {
     var audio = new Audio('static/audio/pickup.wav');
-    //audio.play();
+    audio.play();
+    if(secondsPassed > 2) {
+      collisionOccured = true;
+      document.querySelector("#score-text").textContent = 'Game over, your final score:  ' + secondsPassed;
+    }
     console.log('collision');
   }
   requestAnimationFrame( animate );
