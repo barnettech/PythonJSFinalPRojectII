@@ -48,3 +48,8 @@ def post_highscore(request):
    H.save()
    return HttpResponse("Success!") # Sending an success response
 
+def view_highscores(request):
+    #will order them in desc order and return the top 10 scores
+    highscores=Highscore.objects.all().order_by('besttime')[:10]
+    print(highscores)
+    return render(request, 'highscores.html', {'highscores':highscores})

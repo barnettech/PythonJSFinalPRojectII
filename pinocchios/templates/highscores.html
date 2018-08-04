@@ -1,13 +1,12 @@
 {% extends "base_generic.html" %}
 {% block content %}
     {% if user.is_authenticated and user.get_username == 'admin'%}
-    <div id='existing-order'>
-    <h3>EXISTING ORDERS:</h3>
+    <div id='top-ten-highscores'>
+    <h3>HIGH SCORES:</h3>
       <ul>
-      {% for order in orders %}
+      {% for highscore in highscores %}
         <li>
-          No. {{order.order_number.id}}  Name:  {{order.name}}
-          Email:  {{order.email}} Item: {{order.title}} Price:  ${{order.price}}
+          {{highscore.username}}  score:  {{highscore.besttime}}
         </li>
       {% endfor %}
       </ul>
