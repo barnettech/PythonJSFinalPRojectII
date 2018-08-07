@@ -72,16 +72,16 @@ class Player {
 
   flyLeftShip(keyD, keyS, keyA, keyW) {
   if (keyD == true && this.cube.position.x < 8.5) {
-    this.cube.position.x = this.cube.position.x + .3;
+    this.cube.position.x = this.cube.position.x + .5;
   }
   if (keyS == true && this.cube.position.y > -3) {
-    this.cube.position.y = this.cube.position.y - .3;
+    this.cube.position.y = this.cube.position.y - .5;
   }
   if (keyA == true && this.cube.position.x > -8.5) {
-    this.cube.position.x = this.cube.position.x - .3;
+    this.cube.position.x = this.cube.position.x - .5;
   }
   if (keyW == true && this.cube.position.y < 3.5) {
-    this.cube.position.y = this.cube.position.y + .3;
+    this.cube.position.y = this.cube.position.y + .5;
   }
   pressed = 0;
 
