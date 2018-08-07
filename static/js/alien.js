@@ -17,6 +17,8 @@ class Alien {
     this.oldY = 0;
     this.newY = 1;
   }
+
+  // main code to update each alien per animation loop.
   updateAlien(keyCode) {
     this.cube.rotation.x += 0.01;
     this.cube.rotation.y += 0.01;
@@ -51,6 +53,7 @@ class Alien {
       this.step2 = Math.floor(Math.random() * 4);
     }
 
+    // steps are to randomize movements of the aliens / asteroids.
     if(this.step == 0) {
       this.cube.position.y = this.cube.position.y + .04;
     }

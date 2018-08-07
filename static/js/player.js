@@ -12,9 +12,9 @@ class Player {
     this.cube.x = x
     this.cube.y = y
     this.cube.z = z
-
-    //this.cube.position.set(10, 10, 10);
   }
+
+  // this is the main code to move the player around.
   movePlayer1(keyCode, pressed) {
     // code to broadcast flying data
     keyD = false;
@@ -70,6 +70,7 @@ class Player {
 
   }
 
+  // function to have the ship fly in the direction of keypressed.
   flyLeftShip(keyD, keyS, keyA, keyW) {
   if (keyD == true && this.cube.position.x < 8.5) {
     this.cube.position.x = this.cube.position.x + .5;

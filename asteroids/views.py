@@ -43,6 +43,7 @@ def play_game(request):
 # after game ends post highscore to the model Highscore, using an ajax call
 # from javascript.
 def post_highscore(request):
+   # save the scores to the database.
    score = request.POST.get('score', 0)
    H = Highscore(besttime=int(score), username=request.user.username)
    H.save()
@@ -50,6 +51,6 @@ def post_highscore(request):
 
 # page to view the top ten high scores.
 def view_highscores(request):
-    #will order them in desc order and return the top 10 scores
+    #will fetch all scores, and will order them in desc order and return the top 10 scores
     highscores=Highscore.objects.all().order_by('-besttime')[:10]
     return render(request, 'highscores.html', {'highscores':highscores})

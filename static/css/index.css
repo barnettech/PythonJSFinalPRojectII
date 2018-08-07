@@ -34,6 +34,8 @@
     display: none;
 }
 
+/* below code makes the site more responsive, text is then readable on
+smaller screens */
 @media only screen
     and (min-device-width : 375px)
     and (max-device-width : 667px) {

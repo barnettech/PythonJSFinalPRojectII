@@ -2,38 +2,43 @@
 
 Web Programming with Python and JavaScript
 
-A django app showcasing a Pinocchios restaurant menu
+A django app showcasing a Django App with a ThreeJS game
 for CS50 Web Programming with Python and JavaScript
+
+Move the player around the screen (the blue box), and use the AWSD
+keys to avoid the purple boxes, aliens or asteroids, we're not really
+sure which, but they are deadly dangerous we are quite sure.
 
 ## Getting Started
 
 Spin up the app by typing in python manage.py runserver 0.0.0.0:8080
-from within the project 3 folder, or run sh startserver.sh
+from within the finalproject folder, or run sh startserver.sh
 
-FYI to test checkout with stripe API, which I integrated with to
-checkout, using their payment gateway, here are a list of fake
-credit cards to use https://stripe.com/docs/testing#cards
-I've been using test visa number 4242 4242 4242 4242 which is on
-this list for testing, any valid date in the future, and any
-three digit value for the 3 digit code seems to work.
+Create a login by clicking the register link.  Then login, and click on
+the "Play Game" link within the left hand navigation.
 
 
 ## File Listing
 1.)  In the static directory you'll find index.css for some css rules
-and index.js with all of the JavaScript code for the project
-2.)  In the templates directory within the pinocchios folder
+and main.js, the primary javascript file with all of the JavaScript code for the project.
+The player.js file spawns and controls the main player of the game.  alien.js spawns
+and controls the aliens or asteroids the player is set on avoiding, because they
+will cause sudden death, and the end of the game.  three.min.js is the ThreeJS
+library, which allows us to create 3d graphics.
+
+2.)  In the templates directory within the retrogaming folder
   you'll find all the html templates
   for the project, registration forms are in the registration folder,
   base_generic.html is the basic layout html file, then you have
-  the existing-orders.html showing administrators the orders already
-  in the system.  order_food_form.html is the template for ordering
+  the highscores.html showing highscores for the game.
+  order_food_form.html is the template for ordering
   food.  signup.html is the registration form.  thankyou.html is the
   landing page for after checkout. menu.html shows the basic menu,
   without the ability to order from this page though.
 
-  Within the orders folder, you'll find the admin.py file which registers
+  Within the asteroids folder, you'll find the admin.py file which registers
   all the admin pages.  apps.py lists your app names, forms.py has
-  registration form data.  models.py has all your database models setup
+  registration form data.  models.py has database models setup
   there.  The project did not ask for unit tests, but tests.py is where
   those would go.  urls.py has routing information and points to views.py
   for further definition of what is served up at each route.  In views.py
