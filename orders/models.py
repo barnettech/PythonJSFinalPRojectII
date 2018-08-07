@@ -5,8 +5,8 @@ class Highscore(models.Model):
     """
     Model representing a food on the menu (but not a specific copy of a food).
     """
-    besttime = models.CharField(max_length=200)
     username = models.CharField(max_length=200)
+    besttime = models.IntegerField(default=0)
 
     def __str__(self):
         """

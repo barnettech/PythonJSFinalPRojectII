@@ -44,12 +44,12 @@ def post_highscore(request):
    print('posting the highscore')
    score = request.POST.get('score', 0)
    print(f"score is {score}")
-   H = Highscore(besttime=score, username=request.user.username)
+   H = Highscore(besttime=int(score), username=request.user.username)
    H.save()
    return HttpResponse("Success!") # Sending an success response
 
 def view_highscores(request):
     #will order them in desc order and return the top 10 scores
-    highscores=Highscore.objects.all().order_by('besttime')[:10]
+    highscores=Highscore.objects.all().order_by('-besttime')[:10]
     print(highscores)
     return render(request, 'highscores.html', {'highscores':highscores})

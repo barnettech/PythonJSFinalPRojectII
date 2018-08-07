@@ -22,25 +22,25 @@ class Alien {
     this.cube.rotation.y += 0.01;
     // collision on the top wall
     if(this.cube.position.y > 3.5 && this.cube.position.y < 4) {
-      this.cube.position.y = this.cube.position.y - .08;
+      this.cube.position.y = this.cube.position.y - .05;
       this.step = Math.floor(Math.random() * 4);
       this.step2 = Math.floor(Math.random() * 4);
     }
     // collision on the bottom wall
     if(this.cube.position.y <  -3 && this.cube.position.y > -3.5) {
-      this.cube.position.y = this.cube.position.y + .08;
+      this.cube.position.y = this.cube.position.y + .05;
       this.step = Math.floor(Math.random() * 4);
       this.step2 = Math.floor(Math.random() * 4);
     }
     // collision on the left wall
     if(this.cube.position.x < -8.5 && this.cube.position.x > -9.5) {
-      this.cube.position.x = this.cube.position.x + .08;
+      this.cube.position.x = this.cube.position.x + .05;
       this.step = Math.floor(Math.random() * 4);
       this.step2 = Math.floor(Math.random() * 4);
     }
     // collision on the right wall
     if(this.cube.position.x > 8.5 && this.cube.position.x < 9 ) {
-      this.cube.position.x = this.cube.position.x - .08;
+      this.cube.position.x = this.cube.position.x - .05;
       this.step = Math.floor(Math.random() * 4);
       this.step2 = Math.floor(Math.random() * 4);
     }
@@ -76,30 +76,6 @@ class Alien {
     else if(this.step2 == 3) {
       this.cube.position.x = this.cube.position.x - .04;
     }
-
-
-    /*if (keyCode == '38') {
-        // up arrow
-        this.cube.position.y = this.cube.position.y + .4;
-    }
-    else if (keyCode == '40') {
-        // down arrow
-        this.cube.position.y = this.cube.position.y - .4;
-
-    }
-    else if (keyCode == '37') {
-       // left arrow
-       this.cube.position.x = this.cube.position.x - .4;
-
-    }
-    else if (keyCode == '39') {
-       // right arrow
-       this.cube.position.x = this.cube.position.x + .4;
-    }
-    else if (keyCode == '32') {
-       // space bar
-       this.cube.position.y = this.cube.position.y + .4;
-    }*/
 
   }
   renderAlien() {
