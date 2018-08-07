@@ -1,9 +1,9 @@
 from django.db import models
 
-# Model to hold all the food items for the menu.
+# Model to hold highscores.
 class Highscore(models.Model):
     """
-    Model representing a food on the menu (but not a specific copy of a food).
+    Model to hold the users highscores.
     """
     username = models.CharField(max_length=200)
     besttime = models.IntegerField(default=0)

@@ -4,6 +4,7 @@ from .models import Highscore
 from . import views
 
 # register all the url routes in the views.py file
+# they need to be registered here first.
 urlpatterns = [
     path("", views.index, name="index"),
     path("signup", views.signup, name="signup"),
